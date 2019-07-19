@@ -1,0 +1,911 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+delay_counter       0x4               ./src/board.o
+ms_counter          0x4               ./src/board.o
+ms_counter2         0x4               ./src/board.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x00000000         0x00020000
+ROM              0xfff00000         0x00100000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./src/Powerboard.o
+LOAD ./src/board.o
+LOAD ./generate/hwinit.o
+LOAD ./generate/inthandler.o
+LOAD ./generate/start.o
+LOAD ./generate/vects.o
+START GROUP
+LOAD C:\projekte\Repo\Powerboard\Firmware_e2\Powerboard\HardwareDebug\libPowerboard.a
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX\libgcc.a
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX/../../../../rx-elf/lib\libstdc++.a
+END GROUP
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX/../../../../rx-elf/lib\libstdc++.a
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX/../../../../rx-elf/lib\libm.a
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX\libgcc.a
+START GROUP
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX/../../../../rx-elf/lib\libc.a
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX/../../../../rx-elf/lib\libnosys.a
+END GROUP
+LOAD c:/program files (x86)/gcc for renesas rx 4.8.4.201803-gnurx-elf/rx-elf/rx-elf/bin/../lib/gcc/rx-elf/4.8.4.201803-GNURX\libgcc.a
+
+.fvectors       0xffffff80       0x80
+ *(.fvectors)
+ .fvectors      0xffffff80       0x80 ./generate/vects.o
+                0xffffff80                _HardwareVectors
+
+.text           0xfff00000      0x9f2
+ *(.text)
+ .text          0xfff00000       0xd7 ./generate/start.o
+                0xfff00000                _PowerON_Reset
+                0xfff0007e                _rx_run_preinit_array
+                0xfff00092                _rx_run_init_array
+                0xfff000a8                _rx_run_fini_array
+ *(.text.*)
+ .text.__main   0xfff000d7       0x3d ./src/Powerboard.o
+                0xfff000d7                ___main
+ .text.main     0xfff00114       0x36 ./src/Powerboard.o
+                0xfff00114                _main
+ .text.init_clock
+                0xfff0014a       0x88 ./src/board.o
+                0xfff0014a                _init_clock
+ .text.Timer_MTU3_init
+                0xfff001d2       0x9c ./src/board.o
+                0xfff001d2                _Timer_MTU3_init
+ .text.init_board
+                0xfff0026e       0x51 ./src/board.o
+                0xfff0026e                _init_board
+ .text.delay_ms
+                0xfff002bf       0x25 ./src/board.o
+                0xfff002bf                _delay_ms
+ .text.SysTick_Handler
+                0xfff002e4       0x4c ./src/board.o
+                0xfff002e4                _SysTick_Handler
+ .text.init_IO  0xfff00330       0x1d ./src/board.o
+                0xfff00330                _init_IO
+ .text.HardwareSetup
+                0xfff0034d        0x7 ./generate/hwinit.o
+                0xfff0034d                _HardwareSetup
+ .text.INT_Excep_SuperVisorInst
+                0xfff00354        0x8 ./generate/inthandler.o
+                0xfff00354                _INT_Excep_SuperVisorInst
+ .text.INT_Excep_AccessInst
+                0xfff0035c        0x8 ./generate/inthandler.o
+                0xfff0035c                _INT_Excep_AccessInst
+ .text.INT_Excep_UndefinedInst
+                0xfff00364        0x8 ./generate/inthandler.o
+                0xfff00364                _INT_Excep_UndefinedInst
+ .text.INT_Excep_FloatingPoint
+                0xfff0036c        0x8 ./generate/inthandler.o
+                0xfff0036c                _INT_Excep_FloatingPoint
+ .text.INT_NonMaskableInterrupt
+                0xfff00374        0x8 ./generate/inthandler.o
+                0xfff00374                _INT_NonMaskableInterrupt
+ .text.INT_Dummy
+                0xfff0037c        0x8 ./generate/inthandler.o
+                0xfff0037c                _INT_Dummy
+ .text.INT_Excep_BRK
+                0xfff00384        0x8 ./generate/inthandler.o
+                0xfff00384                _INT_Excep_BRK
+ .text.INT_Excep_BSC_BUSERR
+                0xfff0038c        0x8 ./generate/inthandler.o
+                0xfff0038c                _INT_Excep_BSC_BUSERR
+ .text.INT_Excep_FCU_FIFERR
+                0xfff00394        0x8 ./generate/inthandler.o
+                0xfff00394                _INT_Excep_FCU_FIFERR
+ .text.INT_Excep_FCU_FRDYI
+                0xfff0039c        0x8 ./generate/inthandler.o
+                0xfff0039c                _INT_Excep_FCU_FRDYI
+ .text.INT_Excep_ICU_SWINT
+                0xfff003a4        0x8 ./generate/inthandler.o
+                0xfff003a4                _INT_Excep_ICU_SWINT
+ .text.INT_Excep_CMT0_CMI0
+                0xfff003ac        0x8 ./generate/inthandler.o
+                0xfff003ac                _INT_Excep_CMT0_CMI0
+ .text.INT_Excep_CMT1_CMI1
+                0xfff003b4        0x8 ./generate/inthandler.o
+                0xfff003b4                _INT_Excep_CMT1_CMI1
+ .text.INT_Excep_CMT2_CMI2
+                0xfff003bc        0x8 ./generate/inthandler.o
+                0xfff003bc                _INT_Excep_CMT2_CMI2
+ .text.INT_Excep_CMT3_CMI3
+                0xfff003c4        0x8 ./generate/inthandler.o
+                0xfff003c4                _INT_Excep_CMT3_CMI3
+ .text.INT_Excep_ETHER_EINT
+                0xfff003cc        0x8 ./generate/inthandler.o
+                0xfff003cc                _INT_Excep_ETHER_EINT
+ .text.INT_Excep_USB0_D0FIFO0
+                0xfff003d4        0x8 ./generate/inthandler.o
+                0xfff003d4                _INT_Excep_USB0_D0FIFO0
+ .text.INT_Excep_USB0_D1FIFO0
+                0xfff003dc        0x8 ./generate/inthandler.o
+                0xfff003dc                _INT_Excep_USB0_D1FIFO0
+ .text.INT_Excep_USB0_USBI0
+                0xfff003e4        0x8 ./generate/inthandler.o
+                0xfff003e4                _INT_Excep_USB0_USBI0
+ .text.INT_Excep_USB1_D0FIFO1
+                0xfff003ec        0x8 ./generate/inthandler.o
+                0xfff003ec                _INT_Excep_USB1_D0FIFO1
+ .text.INT_Excep_USB1_D1FIFO1
+                0xfff003f4        0x8 ./generate/inthandler.o
+                0xfff003f4                _INT_Excep_USB1_D1FIFO1
+ .text.INT_Excep_USB1_USBI1
+                0xfff003fc        0x8 ./generate/inthandler.o
+                0xfff003fc                _INT_Excep_USB1_USBI1
+ .text.INT_Excep_RSPI0_SPRI0
+                0xfff00404        0x8 ./generate/inthandler.o
+                0xfff00404                _INT_Excep_RSPI0_SPRI0
+ .text.INT_Excep_RSPI0_SPTI0
+                0xfff0040c        0x8 ./generate/inthandler.o
+                0xfff0040c                _INT_Excep_RSPI0_SPTI0
+ .text.INT_Excep_RSPI0_SPII0
+                0xfff00414        0x8 ./generate/inthandler.o
+                0xfff00414                _INT_Excep_RSPI0_SPII0
+ .text.INT_Excep_RSPI1_SPRI1
+                0xfff0041c        0x8 ./generate/inthandler.o
+                0xfff0041c                _INT_Excep_RSPI1_SPRI1
+ .text.INT_Excep_RSPI1_SPTI1
+                0xfff00424        0x8 ./generate/inthandler.o
+                0xfff00424                _INT_Excep_RSPI1_SPTI1
+ .text.INT_Excep_RSPI1_SPII1
+                0xfff0042c        0x8 ./generate/inthandler.o
+                0xfff0042c                _INT_Excep_RSPI1_SPII1
+ .text.INT_Excep_RSPI2_SPRI2
+                0xfff00434        0x8 ./generate/inthandler.o
+                0xfff00434                _INT_Excep_RSPI2_SPRI2
+ .text.INT_Excep_RSPI2_SPTI2
+                0xfff0043c        0x8 ./generate/inthandler.o
+                0xfff0043c                _INT_Excep_RSPI2_SPTI2
+ .text.INT_Excep_RSPI2_SPII2
+                0xfff00444        0x8 ./generate/inthandler.o
+                0xfff00444                _INT_Excep_RSPI2_SPII2
+ .text.INT_Excep_CAN0_RXF0
+                0xfff0044c        0x8 ./generate/inthandler.o
+                0xfff0044c                _INT_Excep_CAN0_RXF0
+ .text.INT_Excep_CAN0_TXF0
+                0xfff00454        0x8 ./generate/inthandler.o
+                0xfff00454                _INT_Excep_CAN0_TXF0
+ .text.INT_Excep_CAN0_RXM0
+                0xfff0045c        0x8 ./generate/inthandler.o
+                0xfff0045c                _INT_Excep_CAN0_RXM0
+ .text.INT_Excep_CAN0_TXM0
+                0xfff00464        0x8 ./generate/inthandler.o
+                0xfff00464                _INT_Excep_CAN0_TXM0
+ .text.INT_Excep_CAN1_RXF1
+                0xfff0046c        0x8 ./generate/inthandler.o
+                0xfff0046c                _INT_Excep_CAN1_RXF1
+ .text.INT_Excep_CAN1_TXF1
+                0xfff00474        0x8 ./generate/inthandler.o
+                0xfff00474                _INT_Excep_CAN1_TXF1
+ .text.INT_Excep_CAN1_RXM1
+                0xfff0047c        0x8 ./generate/inthandler.o
+                0xfff0047c                _INT_Excep_CAN1_RXM1
+ .text.INT_Excep_CAN1_TXM1
+                0xfff00484        0x8 ./generate/inthandler.o
+                0xfff00484                _INT_Excep_CAN1_TXM1
+ .text.INT_Excep_CAN2_RXF2
+                0xfff0048c        0x8 ./generate/inthandler.o
+                0xfff0048c                _INT_Excep_CAN2_RXF2
+ .text.INT_Excep_CAN2_TXF2
+                0xfff00494        0x8 ./generate/inthandler.o
+                0xfff00494                _INT_Excep_CAN2_TXF2
+ .text.INT_Excep_CAN2_RXM2
+                0xfff0049c        0x8 ./generate/inthandler.o
+                0xfff0049c                _INT_Excep_CAN2_RXM2
+ .text.INT_Excep_CAN2_TXM2
+                0xfff004a4        0x8 ./generate/inthandler.o
+                0xfff004a4                _INT_Excep_CAN2_TXM2
+ .text.INT_Excep_RTC_CUP
+                0xfff004ac        0x8 ./generate/inthandler.o
+                0xfff004ac                _INT_Excep_RTC_CUP
+ .text.INT_Excep_ICU_IRQ0
+                0xfff004b4        0x8 ./generate/inthandler.o
+                0xfff004b4                _INT_Excep_ICU_IRQ0
+ .text.INT_Excep_ICU_IRQ1
+                0xfff004bc        0x8 ./generate/inthandler.o
+                0xfff004bc                _INT_Excep_ICU_IRQ1
+ .text.INT_Excep_ICU_IRQ2
+                0xfff004c4        0x8 ./generate/inthandler.o
+                0xfff004c4                _INT_Excep_ICU_IRQ2
+ .text.INT_Excep_ICU_IRQ3
+                0xfff004cc        0x8 ./generate/inthandler.o
+                0xfff004cc                _INT_Excep_ICU_IRQ3
+ .text.INT_Excep_ICU_IRQ4
+                0xfff004d4        0x8 ./generate/inthandler.o
+                0xfff004d4                _INT_Excep_ICU_IRQ4
+ .text.INT_Excep_ICU_IRQ5
+                0xfff004dc        0x8 ./generate/inthandler.o
+                0xfff004dc                _INT_Excep_ICU_IRQ5
+ .text.INT_Excep_ICU_IRQ6
+                0xfff004e4        0x8 ./generate/inthandler.o
+                0xfff004e4                _INT_Excep_ICU_IRQ6
+ .text.INT_Excep_ICU_IRQ7
+                0xfff004ec        0x8 ./generate/inthandler.o
+                0xfff004ec                _INT_Excep_ICU_IRQ7
+ .text.INT_Excep_ICU_IRQ8
+                0xfff004f4        0x8 ./generate/inthandler.o
+                0xfff004f4                _INT_Excep_ICU_IRQ8
+ .text.INT_Excep_ICU_IRQ9
+                0xfff004fc        0x8 ./generate/inthandler.o
+                0xfff004fc                _INT_Excep_ICU_IRQ9
+ .text.INT_Excep_ICU_IRQ10
+                0xfff00504        0x8 ./generate/inthandler.o
+                0xfff00504                _INT_Excep_ICU_IRQ10
+ .text.INT_Excep_ICU_IRQ11
+                0xfff0050c        0x8 ./generate/inthandler.o
+                0xfff0050c                _INT_Excep_ICU_IRQ11
+ .text.INT_Excep_ICU_IRQ12
+                0xfff00514        0x8 ./generate/inthandler.o
+                0xfff00514                _INT_Excep_ICU_IRQ12
+ .text.INT_Excep_ICU_IRQ13
+                0xfff0051c        0x8 ./generate/inthandler.o
+                0xfff0051c                _INT_Excep_ICU_IRQ13
+ .text.INT_Excep_ICU_IRQ14
+                0xfff00524        0x8 ./generate/inthandler.o
+                0xfff00524                _INT_Excep_ICU_IRQ14
+ .text.INT_Excep_ICU_IRQ15
+                0xfff0052c        0x8 ./generate/inthandler.o
+                0xfff0052c                _INT_Excep_ICU_IRQ15
+ .text.INT_Excep_USB_USBR0
+                0xfff00534        0x8 ./generate/inthandler.o
+                0xfff00534                _INT_Excep_USB_USBR0
+ .text.INT_Excep_USB_USBR1
+                0xfff0053c        0x8 ./generate/inthandler.o
+                0xfff0053c                _INT_Excep_USB_USBR1
+ .text.INT_Excep_RTC_ALM
+                0xfff00544        0x8 ./generate/inthandler.o
+                0xfff00544                _INT_Excep_RTC_ALM
+ .text.INT_Excep_RTC_PRD
+                0xfff0054c        0x8 ./generate/inthandler.o
+                0xfff0054c                _INT_Excep_RTC_PRD
+ .text.INT_Excep_AD_ADI0
+                0xfff00554        0x8 ./generate/inthandler.o
+                0xfff00554                _INT_Excep_AD_ADI0
+ .text.INT_Excep_S12AD_S12ADI0
+                0xfff0055c        0x8 ./generate/inthandler.o
+                0xfff0055c                _INT_Excep_S12AD_S12ADI0
+ .text.INT_Excep_ICU_GROUP0
+                0xfff00564        0x8 ./generate/inthandler.o
+                0xfff00564                _INT_Excep_ICU_GROUP0
+ .text.INT_Excep_ICU_GROUP1
+                0xfff0056c        0x8 ./generate/inthandler.o
+                0xfff0056c                _INT_Excep_ICU_GROUP1
+ .text.INT_Excep_ICU_GROUP2
+                0xfff00574        0x8 ./generate/inthandler.o
+                0xfff00574                _INT_Excep_ICU_GROUP2
+ .text.INT_Excep_ICU_GROUP3
+                0xfff0057c        0x8 ./generate/inthandler.o
+                0xfff0057c                _INT_Excep_ICU_GROUP3
+ .text.INT_Excep_ICU_GROUP4
+                0xfff00584        0x8 ./generate/inthandler.o
+                0xfff00584                _INT_Excep_ICU_GROUP4
+ .text.INT_Excep_ICU_GROUP5
+                0xfff0058c        0x8 ./generate/inthandler.o
+                0xfff0058c                _INT_Excep_ICU_GROUP5
+ .text.INT_Excep_ICU_GROUP6
+                0xfff00594        0x8 ./generate/inthandler.o
+                0xfff00594                _INT_Excep_ICU_GROUP6
+ .text.INT_Excep_ICU_GROUP12
+                0xfff0059c        0x8 ./generate/inthandler.o
+                0xfff0059c                _INT_Excep_ICU_GROUP12
+ .text.INT_Excep_SCI12_SCIX0
+                0xfff005a4        0x8 ./generate/inthandler.o
+                0xfff005a4                _INT_Excep_SCI12_SCIX0
+ .text.INT_Excep_SCI12_SCIX1
+                0xfff005ac        0x8 ./generate/inthandler.o
+                0xfff005ac                _INT_Excep_SCI12_SCIX1
+ .text.INT_Excep_SCI12_SCIX2
+                0xfff005b4        0x8 ./generate/inthandler.o
+                0xfff005b4                _INT_Excep_SCI12_SCIX2
+ .text.INT_Excep_SCI12_SCIX3
+                0xfff005bc        0x8 ./generate/inthandler.o
+                0xfff005bc                _INT_Excep_SCI12_SCIX3
+ .text.INT_Excep_TPU0_TGI0A
+                0xfff005c4        0x8 ./generate/inthandler.o
+                0xfff005c4                _INT_Excep_TPU0_TGI0A
+ .text.INT_Excep_TPU0_TGI0B
+                0xfff005cc        0x8 ./generate/inthandler.o
+                0xfff005cc                _INT_Excep_TPU0_TGI0B
+ .text.INT_Excep_TPU0_TGI0C
+                0xfff005d4        0x8 ./generate/inthandler.o
+                0xfff005d4                _INT_Excep_TPU0_TGI0C
+ .text.INT_Excep_TPU0_TGI0D
+                0xfff005dc        0x8 ./generate/inthandler.o
+                0xfff005dc                _INT_Excep_TPU0_TGI0D
+ .text.INT_Excep_TPU1_TGI1A
+                0xfff005e4        0x8 ./generate/inthandler.o
+                0xfff005e4                _INT_Excep_TPU1_TGI1A
+ .text.INT_Excep_TPU1_TGI1B
+                0xfff005ec        0x8 ./generate/inthandler.o
+                0xfff005ec                _INT_Excep_TPU1_TGI1B
+ .text.INT_Excep_TPU2_TGI2A
+                0xfff005f4        0x8 ./generate/inthandler.o
+                0xfff005f4                _INT_Excep_TPU2_TGI2A
+ .text.INT_Excep_TPU2_TGI2B
+                0xfff005fc        0x8 ./generate/inthandler.o
+                0xfff005fc                _INT_Excep_TPU2_TGI2B
+ .text.INT_Excep_TPU3_TGI3A
+                0xfff00604        0x8 ./generate/inthandler.o
+                0xfff00604                _INT_Excep_TPU3_TGI3A
+ .text.INT_Excep_TPU3_TGI3B
+                0xfff0060c        0x8 ./generate/inthandler.o
+                0xfff0060c                _INT_Excep_TPU3_TGI3B
+ .text.INT_Excep_TPU3_TGI3C
+                0xfff00614        0x8 ./generate/inthandler.o
+                0xfff00614                _INT_Excep_TPU3_TGI3C
+ .text.INT_Excep_TPU3_TGI3D
+                0xfff0061c        0x8 ./generate/inthandler.o
+                0xfff0061c                _INT_Excep_TPU3_TGI3D
+ .text.INT_Excep_TPU4_TGI4A
+                0xfff00624        0x8 ./generate/inthandler.o
+                0xfff00624                _INT_Excep_TPU4_TGI4A
+ .text.INT_Excep_TPU4_TGI4B
+                0xfff0062c        0x8 ./generate/inthandler.o
+                0xfff0062c                _INT_Excep_TPU4_TGI4B
+ .text.INT_Excep_TPU5_TGI5A
+                0xfff00634        0x8 ./generate/inthandler.o
+                0xfff00634                _INT_Excep_TPU5_TGI5A
+ .text.INT_Excep_TPU5_TGI5B
+                0xfff0063c        0x8 ./generate/inthandler.o
+                0xfff0063c                _INT_Excep_TPU5_TGI5B
+ .text.INT_Excep_TPU6_TGI6A
+                0xfff00644        0x8 ./generate/inthandler.o
+                0xfff00644                _INT_Excep_TPU6_TGI6A
+ .text.INT_Excep_TPU6_TGI6B
+                0xfff0064c        0x8 ./generate/inthandler.o
+                0xfff0064c                _INT_Excep_TPU6_TGI6B
+ .text.INT_Excep_TPU6_TGI6C
+                0xfff00654        0x8 ./generate/inthandler.o
+                0xfff00654                _INT_Excep_TPU6_TGI6C
+ .text.INT_Excep_TPU6_TGI6D
+                0xfff0065c        0x8 ./generate/inthandler.o
+                0xfff0065c                _INT_Excep_TPU6_TGI6D
+ .text.INT_Excep_MTU0_TGIA0
+                0xfff00664        0x7 ./generate/inthandler.o
+                0xfff00664                _INT_Excep_MTU0_TGIA0
+ .text.INT_Excep_MTU0_TGIB0
+                0xfff0066b        0x7 ./generate/inthandler.o
+                0xfff0066b                _INT_Excep_MTU0_TGIB0
+ .text.INT_Excep_MTU0_TGIC0
+                0xfff00672        0x7 ./generate/inthandler.o
+                0xfff00672                _INT_Excep_MTU0_TGIC0
+ .text.INT_Excep_MTU0_TGID0
+                0xfff00679        0x7 ./generate/inthandler.o
+                0xfff00679                _INT_Excep_MTU0_TGID0
+ .text.INT_Excep_MTU0_TGIE0
+                0xfff00680        0x8 ./generate/inthandler.o
+                0xfff00680                _INT_Excep_MTU0_TGIE0
+ .text.INT_Excep_MTU0_TGIF0
+                0xfff00688        0x8 ./generate/inthandler.o
+                0xfff00688                _INT_Excep_MTU0_TGIF0
+ .text.INT_Excep_TPU7_TGI7A
+                0xfff00690        0x8 ./generate/inthandler.o
+                0xfff00690                _INT_Excep_TPU7_TGI7A
+ .text.INT_Excep_TPU7_TGI7B
+                0xfff00698        0x8 ./generate/inthandler.o
+                0xfff00698                _INT_Excep_TPU7_TGI7B
+ .text.INT_Excep_MTU1_TGIA1
+                0xfff006a0        0x7 ./generate/inthandler.o
+                0xfff006a0                _INT_Excep_MTU1_TGIA1
+ .text.INT_Excep_MTU1_TGIB1
+                0xfff006a7        0x7 ./generate/inthandler.o
+                0xfff006a7                _INT_Excep_MTU1_TGIB1
+ .text.INT_Excep_TPU8_TGI8A
+                0xfff006ae        0x8 ./generate/inthandler.o
+                0xfff006ae                _INT_Excep_TPU8_TGI8A
+ .text.INT_Excep_TPU8_TGI8B
+                0xfff006b6        0x8 ./generate/inthandler.o
+                0xfff006b6                _INT_Excep_TPU8_TGI8B
+ .text.INT_Excep_MTU2_TGIA2
+                0xfff006be        0x7 ./generate/inthandler.o
+                0xfff006be                _INT_Excep_MTU2_TGIA2
+ .text.INT_Excep_MTU2_TGIB2
+                0xfff006c5        0x7 ./generate/inthandler.o
+                0xfff006c5                _INT_Excep_MTU2_TGIB2
+ .text.INT_Excep_TPU9_TGI9A
+                0xfff006cc        0x8 ./generate/inthandler.o
+                0xfff006cc                _INT_Excep_TPU9_TGI9A
+ .text.INT_Excep_TPU9_TGI9B
+                0xfff006d4        0xc ./generate/inthandler.o
+                0xfff006d4                _INT_Excep_TPU9_TGI9B
+ .text.INT_Excep_TPU9_TGI9C
+                0xfff006e0        0x8 ./generate/inthandler.o
+                0xfff006e0                _INT_Excep_TPU9_TGI9C
+ .text.INT_Excep_TPU9_TGI9D
+                0xfff006e8        0x8 ./generate/inthandler.o
+                0xfff006e8                _INT_Excep_TPU9_TGI9D
+ .text.INT_Excep_MTU3_TGIA3
+                0xfff006f0        0x7 ./generate/inthandler.o
+                0xfff006f0                _INT_Excep_MTU3_TGIA3
+ .text.INT_Excep_MTU3_TGIB3
+                0xfff006f7        0x7 ./generate/inthandler.o
+                0xfff006f7                _INT_Excep_MTU3_TGIB3
+ .text.INT_Excep_MTU3_TGIC3
+                0xfff006fe        0x7 ./generate/inthandler.o
+                0xfff006fe                _INT_Excep_MTU3_TGIC3
+ .text.INT_Excep_MTU3_TGID3
+                0xfff00705        0x7 ./generate/inthandler.o
+                0xfff00705                _INT_Excep_MTU3_TGID3
+ .text.INT_Excep_TPU10_TGI10A
+                0xfff0070c        0x8 ./generate/inthandler.o
+                0xfff0070c                _INT_Excep_TPU10_TGI10A
+ .text.INT_Excep_TPU10_TGI10B
+                0xfff00714        0x8 ./generate/inthandler.o
+                0xfff00714                _INT_Excep_TPU10_TGI10B
+ .text.INT_Excep_MTU4_TGIA4
+                0xfff0071c        0x7 ./generate/inthandler.o
+                0xfff0071c                _INT_Excep_MTU4_TGIA4
+ .text.INT_Excep_MTU4_TGIB4
+                0xfff00723        0x7 ./generate/inthandler.o
+                0xfff00723                _INT_Excep_MTU4_TGIB4
+ .text.INT_Excep_MTU4_TGIC4
+                0xfff0072a        0x8 ./generate/inthandler.o
+                0xfff0072a                _INT_Excep_MTU4_TGIC4
+ .text.INT_Excep_MTU4_TGID4
+                0xfff00732        0x8 ./generate/inthandler.o
+                0xfff00732                _INT_Excep_MTU4_TGID4
+ .text.INT_Excep_MTU4_TCIV4
+                0xfff0073a        0x8 ./generate/inthandler.o
+                0xfff0073a                _INT_Excep_MTU4_TCIV4
+ .text.INT_Excep_TPU11_TGI11A
+                0xfff00742        0x8 ./generate/inthandler.o
+                0xfff00742                _INT_Excep_TPU11_TGI11A
+ .text.INT_Excep_TPU11_TGI11B
+                0xfff0074a        0x8 ./generate/inthandler.o
+                0xfff0074a                _INT_Excep_TPU11_TGI11B
+ .text.INT_Excep_MTU5_TGIU5
+                0xfff00752        0x8 ./generate/inthandler.o
+                0xfff00752                _INT_Excep_MTU5_TGIU5
+ .text.INT_Excep_MTU5_TGIV5
+                0xfff0075a        0x8 ./generate/inthandler.o
+                0xfff0075a                _INT_Excep_MTU5_TGIV5
+ .text.INT_Excep_MTU5_TGIW5
+                0xfff00762        0x8 ./generate/inthandler.o
+                0xfff00762                _INT_Excep_MTU5_TGIW5
+ .text.INT_Excep_POE_OEI1
+                0xfff0076a        0x8 ./generate/inthandler.o
+                0xfff0076a                _INT_Excep_POE_OEI1
+ .text.INT_Excep_POE_OEI2
+                0xfff00772        0x8 ./generate/inthandler.o
+                0xfff00772                _INT_Excep_POE_OEI2
+ .text.INT_Excep_TMR0_CMIA0
+                0xfff0077a        0x8 ./generate/inthandler.o
+                0xfff0077a                _INT_Excep_TMR0_CMIA0
+ .text.INT_Excep_TMR0_CMIB0
+                0xfff00782        0x8 ./generate/inthandler.o
+                0xfff00782                _INT_Excep_TMR0_CMIB0
+ .text.INT_Excep_TMR0_OVI0
+                0xfff0078a        0x8 ./generate/inthandler.o
+                0xfff0078a                _INT_Excep_TMR0_OVI0
+ .text.INT_Excep_TMR1_CMIA1
+                0xfff00792        0x8 ./generate/inthandler.o
+                0xfff00792                _INT_Excep_TMR1_CMIA1
+ .text.INT_Excep_TMR1_CMIB1
+                0xfff0079a        0x8 ./generate/inthandler.o
+                0xfff0079a                _INT_Excep_TMR1_CMIB1
+ .text.INT_Excep_TMR1_OVI1
+                0xfff007a2        0x8 ./generate/inthandler.o
+                0xfff007a2                _INT_Excep_TMR1_OVI1
+ .text.INT_Excep_TMR2_CMIA2
+                0xfff007aa        0x8 ./generate/inthandler.o
+                0xfff007aa                _INT_Excep_TMR2_CMIA2
+ .text.INT_Excep_TMR2_CMIB2
+                0xfff007b2        0x8 ./generate/inthandler.o
+                0xfff007b2                _INT_Excep_TMR2_CMIB2
+ .text.INT_Excep_TMR2_OVI2
+                0xfff007ba        0x8 ./generate/inthandler.o
+                0xfff007ba                _INT_Excep_TMR2_OVI2
+ .text.INT_Excep_TMR3_CMIA3
+                0xfff007c2        0x8 ./generate/inthandler.o
+                0xfff007c2                _INT_Excep_TMR3_CMIA3
+ .text.INT_Excep_TMR3_CMIB3
+                0xfff007ca        0x8 ./generate/inthandler.o
+                0xfff007ca                _INT_Excep_TMR3_CMIB3
+ .text.INT_Excep_TMR3_OVI3
+                0xfff007d2        0x8 ./generate/inthandler.o
+                0xfff007d2                _INT_Excep_TMR3_OVI3
+ .text.INT_Excep_RIIC0_EEI0
+                0xfff007da        0x8 ./generate/inthandler.o
+                0xfff007da                _INT_Excep_RIIC0_EEI0
+ .text.INT_Excep_RIIC0_RXI0
+                0xfff007e2        0x8 ./generate/inthandler.o
+                0xfff007e2                _INT_Excep_RIIC0_RXI0
+ .text.INT_Excep_RIIC0_TXI0
+                0xfff007ea        0x8 ./generate/inthandler.o
+                0xfff007ea                _INT_Excep_RIIC0_TXI0
+ .text.INT_Excep_RIIC0_TEI0
+                0xfff007f2        0x8 ./generate/inthandler.o
+                0xfff007f2                _INT_Excep_RIIC0_TEI0
+ .text.INT_Excep_RIIC1_EEI1
+                0xfff007fa        0x8 ./generate/inthandler.o
+                0xfff007fa                _INT_Excep_RIIC1_EEI1
+ .text.INT_Excep_RIIC1_RXI1
+                0xfff00802        0x8 ./generate/inthandler.o
+                0xfff00802                _INT_Excep_RIIC1_RXI1
+ .text.INT_Excep_RIIC1_TXI1
+                0xfff0080a        0x8 ./generate/inthandler.o
+                0xfff0080a                _INT_Excep_RIIC1_TXI1
+ .text.INT_Excep_RIIC1_TEI1
+                0xfff00812        0x8 ./generate/inthandler.o
+                0xfff00812                _INT_Excep_RIIC1_TEI1
+ .text.INT_Excep_RIIC2_EEI2
+                0xfff0081a        0x8 ./generate/inthandler.o
+                0xfff0081a                _INT_Excep_RIIC2_EEI2
+ .text.INT_Excep_RIIC2_RXI2
+                0xfff00822        0x8 ./generate/inthandler.o
+                0xfff00822                _INT_Excep_RIIC2_RXI2
+ .text.INT_Excep_RIIC2_TXI2
+                0xfff0082a        0x8 ./generate/inthandler.o
+                0xfff0082a                _INT_Excep_RIIC2_TXI2
+ .text.INT_Excep_RIIC2_TEI2
+                0xfff00832        0x8 ./generate/inthandler.o
+                0xfff00832                _INT_Excep_RIIC2_TEI2
+ .text.INT_Excep_RIIC3_EEI3
+                0xfff0083a        0x8 ./generate/inthandler.o
+                0xfff0083a                _INT_Excep_RIIC3_EEI3
+ .text.INT_Excep_RIIC3_RXI3
+                0xfff00842        0x8 ./generate/inthandler.o
+                0xfff00842                _INT_Excep_RIIC3_RXI3
+ .text.INT_Excep_RIIC3_TXI3
+                0xfff0084a        0x8 ./generate/inthandler.o
+                0xfff0084a                _INT_Excep_RIIC3_TXI3
+ .text.INT_Excep_RIIC3_TEI3
+                0xfff00852        0x8 ./generate/inthandler.o
+                0xfff00852                _INT_Excep_RIIC3_TEI3
+ .text.INT_Excep_DMAC_DMAC0I
+                0xfff0085a        0x8 ./generate/inthandler.o
+                0xfff0085a                _INT_Excep_DMAC_DMAC0I
+ .text.INT_Excep_DMAC_DMAC1I
+                0xfff00862        0x8 ./generate/inthandler.o
+                0xfff00862                _INT_Excep_DMAC_DMAC1I
+ .text.INT_Excep_DMAC_DMAC2I
+                0xfff0086a        0x8 ./generate/inthandler.o
+                0xfff0086a                _INT_Excep_DMAC_DMAC2I
+ .text.INT_Excep_DMAC_DMAC3I
+                0xfff00872        0x8 ./generate/inthandler.o
+                0xfff00872                _INT_Excep_DMAC_DMAC3I
+ .text.INT_Excep_EXDMAC_EXDMAC0I
+                0xfff0087a        0x8 ./generate/inthandler.o
+                0xfff0087a                _INT_Excep_EXDMAC_EXDMAC0I
+ .text.INT_Excep_EXDMAC_EXDMAC1I
+                0xfff00882        0x8 ./generate/inthandler.o
+                0xfff00882                _INT_Excep_EXDMAC_EXDMAC1I
+ .text.INT_Excep_DEU_DEU0
+                0xfff0088a        0x8 ./generate/inthandler.o
+                0xfff0088a                _INT_Excep_DEU_DEU0
+ .text.INT_Excep_DEU_DEU1
+                0xfff00892        0x8 ./generate/inthandler.o
+                0xfff00892                _INT_Excep_DEU_DEU1
+ .text.INT_Excep_PDC_PCDFI
+                0xfff0089a        0x8 ./generate/inthandler.o
+                0xfff0089a                _INT_Excep_PDC_PCDFI
+ .text.INT_Excep_PDC_PCFEI
+                0xfff008a2        0x8 ./generate/inthandler.o
+                0xfff008a2                _INT_Excep_PDC_PCFEI
+ .text.INT_Excep_PDC_PCERI
+                0xfff008aa        0x8 ./generate/inthandler.o
+                0xfff008aa                _INT_Excep_PDC_PCERI
+ .text.INT_Excep_SCI0_RXI0
+                0xfff008b2        0x8 ./generate/inthandler.o
+                0xfff008b2                _INT_Excep_SCI0_RXI0
+ .text.INT_Excep_SCI0_TXI0
+                0xfff008ba        0x8 ./generate/inthandler.o
+                0xfff008ba                _INT_Excep_SCI0_TXI0
+ .text.INT_Excep_SCI0_TEI0
+                0xfff008c2        0x8 ./generate/inthandler.o
+                0xfff008c2                _INT_Excep_SCI0_TEI0
+ .text.INT_Excep_SCI1_RXI1
+                0xfff008ca        0x8 ./generate/inthandler.o
+                0xfff008ca                _INT_Excep_SCI1_RXI1
+ .text.INT_Excep_SCI1_TXI1
+                0xfff008d2        0x8 ./generate/inthandler.o
+                0xfff008d2                _INT_Excep_SCI1_TXI1
+ .text.INT_Excep_SCI1_TEI1
+                0xfff008da        0x8 ./generate/inthandler.o
+                0xfff008da                _INT_Excep_SCI1_TEI1
+ .text.INT_Excep_SCI2_RXI2
+                0xfff008e2        0x8 ./generate/inthandler.o
+                0xfff008e2                _INT_Excep_SCI2_RXI2
+ .text.INT_Excep_SCI2_TXI2
+                0xfff008ea        0x8 ./generate/inthandler.o
+                0xfff008ea                _INT_Excep_SCI2_TXI2
+ .text.INT_Excep_SCI2_TEI2
+                0xfff008f2        0x8 ./generate/inthandler.o
+                0xfff008f2                _INT_Excep_SCI2_TEI2
+ .text.INT_Excep_SCI3_RXI3
+                0xfff008fa        0x8 ./generate/inthandler.o
+                0xfff008fa                _INT_Excep_SCI3_RXI3
+ .text.INT_Excep_SCI3_TXI3
+                0xfff00902        0x8 ./generate/inthandler.o
+                0xfff00902                _INT_Excep_SCI3_TXI3
+ .text.INT_Excep_SCI3_TEI3
+                0xfff0090a        0x8 ./generate/inthandler.o
+                0xfff0090a                _INT_Excep_SCI3_TEI3
+ .text.INT_Excep_SCI4_RXI4
+                0xfff00912        0x8 ./generate/inthandler.o
+                0xfff00912                _INT_Excep_SCI4_RXI4
+ .text.INT_Excep_SCI4_TXI4
+                0xfff0091a        0x8 ./generate/inthandler.o
+                0xfff0091a                _INT_Excep_SCI4_TXI4
+ .text.INT_Excep_SCI4_TEI4
+                0xfff00922        0x8 ./generate/inthandler.o
+                0xfff00922                _INT_Excep_SCI4_TEI4
+ .text.INT_Excep_SCI5_RXI5
+                0xfff0092a        0x8 ./generate/inthandler.o
+                0xfff0092a                _INT_Excep_SCI5_RXI5
+ .text.INT_Excep_SCI5_TXI5
+                0xfff00932        0x8 ./generate/inthandler.o
+                0xfff00932                _INT_Excep_SCI5_TXI5
+ .text.INT_Excep_SCI5_TEI5
+                0xfff0093a        0x8 ./generate/inthandler.o
+                0xfff0093a                _INT_Excep_SCI5_TEI5
+ .text.INT_Excep_SCI6_RXI6
+                0xfff00942        0x8 ./generate/inthandler.o
+                0xfff00942                _INT_Excep_SCI6_RXI6
+ .text.INT_Excep_SCI6_TXI6
+                0xfff0094a        0x8 ./generate/inthandler.o
+                0xfff0094a                _INT_Excep_SCI6_TXI6
+ .text.INT_Excep_SCI6_TEI6
+                0xfff00952        0x8 ./generate/inthandler.o
+                0xfff00952                _INT_Excep_SCI6_TEI6
+ .text.INT_Excep_SCI7_RXI7
+                0xfff0095a        0x8 ./generate/inthandler.o
+                0xfff0095a                _INT_Excep_SCI7_RXI7
+ .text.INT_Excep_SCI7_TXI7
+                0xfff00962        0x8 ./generate/inthandler.o
+                0xfff00962                _INT_Excep_SCI7_TXI7
+ .text.INT_Excep_SCI7_TEI7
+                0xfff0096a        0x8 ./generate/inthandler.o
+                0xfff0096a                _INT_Excep_SCI7_TEI7
+ .text.INT_Excep_SCI8_RXI8
+                0xfff00972        0x8 ./generate/inthandler.o
+                0xfff00972                _INT_Excep_SCI8_RXI8
+ .text.INT_Excep_SCI8_TXI8
+                0xfff0097a        0x8 ./generate/inthandler.o
+                0xfff0097a                _INT_Excep_SCI8_TXI8
+ .text.INT_Excep_SCI8_TEI8
+                0xfff00982        0x8 ./generate/inthandler.o
+                0xfff00982                _INT_Excep_SCI8_TEI8
+ .text.INT_Excep_SCI9_RXI9
+                0xfff0098a        0x8 ./generate/inthandler.o
+                0xfff0098a                _INT_Excep_SCI9_RXI9
+ .text.INT_Excep_SCI9_TXI9
+                0xfff00992        0x8 ./generate/inthandler.o
+                0xfff00992                _INT_Excep_SCI9_TXI9
+ .text.INT_Excep_SCI9_TEI9
+                0xfff0099a        0x8 ./generate/inthandler.o
+                0xfff0099a                _INT_Excep_SCI9_TEI9
+ .text.INT_Excep_SCI10_RXI10
+                0xfff009a2        0x8 ./generate/inthandler.o
+                0xfff009a2                _INT_Excep_SCI10_RXI10
+ .text.INT_Excep_SCI10_TXI10
+                0xfff009aa        0x8 ./generate/inthandler.o
+                0xfff009aa                _INT_Excep_SCI10_TXI10
+ .text.INT_Excep_SCI10_TEI10
+                0xfff009b2        0x8 ./generate/inthandler.o
+                0xfff009b2                _INT_Excep_SCI10_TEI10
+ .text.INT_Excep_SCI11_RXI11
+                0xfff009ba        0x8 ./generate/inthandler.o
+                0xfff009ba                _INT_Excep_SCI11_RXI11
+ .text.INT_Excep_SCI11_TXI11
+                0xfff009c2        0x8 ./generate/inthandler.o
+                0xfff009c2                _INT_Excep_SCI11_TXI11
+ .text.INT_Excep_SCI11_TEI11
+                0xfff009ca        0x8 ./generate/inthandler.o
+                0xfff009ca                _INT_Excep_SCI11_TEI11
+ .text.INT_Excep_SCI12_RXI12
+                0xfff009d2        0x8 ./generate/inthandler.o
+                0xfff009d2                _INT_Excep_SCI12_RXI12
+ .text.INT_Excep_SCI12_TXI12
+                0xfff009da        0x8 ./generate/inthandler.o
+                0xfff009da                _INT_Excep_SCI12_TXI12
+ .text.INT_Excep_SCI12_TEI12
+                0xfff009e2        0x8 ./generate/inthandler.o
+                0xfff009e2                _INT_Excep_SCI12_TEI12
+ .text.INT_Excep_IEB_IEBINT
+                0xfff009ea        0x8 ./generate/inthandler.o
+                0xfff009ea                _INT_Excep_IEB_IEBINT
+ *(P)
+ P              0xfff009f2        0x0 ./src/Powerboard.o
+ P              0xfff009f2        0x0 ./src/board.o
+ P              0xfff009f2        0x0 ./generate/hwinit.o
+ P              0xfff009f2        0x0 ./generate/inthandler.o
+ P              0xfff009f2        0x0 ./generate/start.o
+ P              0xfff009f2        0x0 ./generate/vects.o
+                0xfff009f2                etext = .
+
+.rvectors       0xfff009f4      0x400
+                0xfff009f4                _rvectors_start = .
+ *(.rvectors)
+ .rvectors      0xfff009f4      0x400 ./generate/vects.o
+                0xfff009f4                _RelocatableVectors
+                0xfff00df4                _rvectors_end = .
+
+.init           0xfff00df4       0x14
+ *(.init)
+ .init          0xfff00df4       0x14 ./generate/start.o
+                0xfff00df4                __rx_init
+                0xfff00e05                __rx_init_end
+                0xfff00e08                __preinit_array_start = .
+ *(.preinit_array)
+                0xfff00e08                __preinit_array_end = .
+                0xfff00e08                __init_array_start = ((. + 0x3) & 0xfffffffc)
+ *(.init_array)
+ *(SORT(.init_array.*))
+                0xfff00e08                __init_array_end = .
+                0xfff00e08                __fini_array_start = .
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0xfff00e08                __fini_array_end = .
+
+.fini           0xfff00e08       0x10
+ *(.fini)
+ .fini          0xfff00e08       0x10 ./generate/start.o
+                0xfff00e08                __rx_fini
+                0xfff00e11                __rx_fini_end
+
+.got
+ *(.got)
+ *(.got.plt)
+
+.rodata         0xfff00e18        0x0
+ *(.rodata)
+ *(.rodata.*)
+ *(C_1)
+ *(C_2)
+ *(C)
+                0xfff00e18                _erodata = .
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.jcr
+ *(.jcr)
+
+.tors           0xfff00e18        0x0
+                0xfff00e18                __CTOR_LIST__ = .
+                0xfff00e18                . = ALIGN (0x2)
+                0xfff00e18                ___ctors = .
+ *(.ctors)
+                0xfff00e18                ___ctors_end = .
+                0xfff00e18                __CTOR_END__ = .
+                0xfff00e18                __DTOR_LIST__ = .
+                0xfff00e18                ___dtors = .
+ *(.dtors)
+                0xfff00e18                ___dtors_end = .
+                0xfff00e18                __DTOR_END__ = .
+                0xfff00e18                . = ALIGN (0x2)
+                0xfff00e18                _mdata = .
+
+.ustack         0x00000200        0x0
+                0x00000200                _ustack = .
+
+.istack         0x00000100        0x0
+                0x00000100                _istack = .
+
+.data           0x00000204        0x4 load address 0xfff00e18
+                0x00000204                _data = .
+ *(.data)
+ .data          0x00000204        0x4 ./generate/start.o
+                0x00000204                ___dso_handle
+ *(.data.*)
+ *(D)
+ *(D_1)
+ D_1            0x00000208        0x0 ./src/Powerboard.o
+ D_1            0x00000208        0x0 ./src/board.o
+ D_1            0x00000208        0x0 ./generate/hwinit.o
+ D_1            0x00000208        0x0 ./generate/inthandler.o
+ D_1            0x00000208        0x0 ./generate/start.o
+ D_1            0x00000208        0x0 ./generate/vects.o
+ *(D_2)
+                0x00000208                _edata = .
+
+.gcc_exc
+ *(.gcc_exc)
+
+.bss            0x00000208       0x10 load address 0xfff00e1c
+                0x00000208                _bss = .
+ *(.bss)
+ *(.bss.**)
+ .bss.initialized.13935
+                0x00000208        0x4 ./src/Powerboard.o
+ *(COMMON)
+ COMMON         0x0000020c        0xc ./src/board.o
+                0x0000020c                _delay_counter
+                0x00000210                _ms_counter
+                0x00000214                _ms_counter2
+ *(B)
+ *(B_1)
+ B_1            0x00000218        0x0 ./src/Powerboard.o
+ B_1            0x00000218        0x0 ./src/board.o
+ B_1            0x00000218        0x0 ./generate/hwinit.o
+ B_1            0x00000218        0x0 ./generate/inthandler.o
+ B_1            0x00000218        0x0 ./generate/start.o
+ B_1            0x00000218        0x0 ./generate/vects.o
+ *(B_2)
+                0x00000218                _ebss = .
+                0x00000218                _end = .
+OUTPUT(Powerboard.elf elf32-rx-le)
+
+.debug_frame    0x00000000     0x1c44
+ .debug_frame   0x00000000       0x5c ./src/Powerboard.o
+ .debug_frame   0x0000005c       0xe4 ./src/board.o
+ .debug_frame   0x00000140       0x34 ./generate/hwinit.o
+ .debug_frame   0x00000174     0x1ad0 ./generate/inthandler.o
+
+.debug_info     0x00000000     0x6dfc
+ .debug_info    0x00000000      0x6bd ./src/Powerboard.o
+ .debug_info    0x000006bd     0x5708 ./src/board.o
+ .debug_info    0x00005dc5       0x5a ./generate/hwinit.o
+ .debug_info    0x00005e1f      0xeed ./generate/inthandler.o
+ .debug_info    0x00006d0c       0x6c ./generate/start.o
+ .debug_info    0x00006d78       0x84 ./generate/vects.o
+
+.debug_abbrev   0x00000000      0x414
+ .debug_abbrev  0x00000000      0x143 ./src/Powerboard.o
+ .debug_abbrev  0x00000143      0x1a2 ./src/board.o
+ .debug_abbrev  0x000002e5       0x37 ./generate/hwinit.o
+ .debug_abbrev  0x0000031c       0x7f ./generate/inthandler.o
+ .debug_abbrev  0x0000039b       0x12 ./generate/start.o
+ .debug_abbrev  0x000003ad       0x67 ./generate/vects.o
+
+.debug_aranges  0x00000000      0x798
+ .debug_aranges
+                0x00000000       0x28 ./src/Powerboard.o
+ .debug_aranges
+                0x00000028       0x48 ./src/board.o
+ .debug_aranges
+                0x00000070       0x20 ./generate/hwinit.o
+ .debug_aranges
+                0x00000090      0x6c0 ./generate/inthandler.o
+ .debug_aranges
+                0x00000750       0x30 ./generate/start.o
+ .debug_aranges
+                0x00000780       0x18 ./generate/vects.o
+
+.debug_ranges   0x00000000      0x738
+ .debug_ranges  0x00000000       0x18 ./src/Powerboard.o
+ .debug_ranges  0x00000018       0x38 ./src/board.o
+ .debug_ranges  0x00000050       0x10 ./generate/hwinit.o
+ .debug_ranges  0x00000060      0x6b0 ./generate/inthandler.o
+ .debug_ranges  0x00000710       0x28 ./generate/start.o
+
+.debug_line     0x00000000     0x11c8
+ .debug_line    0x00000000       0xc0 ./src/Powerboard.o
+ .debug_line    0x000000c0      0x192 ./src/board.o
+ .debug_line    0x00000252       0x47 ./generate/hwinit.o
+ .debug_line    0x00000299      0xe52 ./generate/inthandler.o
+ .debug_line    0x000010eb       0xa9 ./generate/start.o
+ .debug_line    0x00001194       0x34 ./generate/vects.o
+
+.debug_str      0x00000000     0x44f2
+ .debug_str     0x00000000      0x171 ./src/Powerboard.o
+                                0x1af (size before relaxing)
+ .debug_str     0x00000171     0x3192 ./src/board.o
+                               0x3356 (size before relaxing)
+ .debug_str     0x00003303       0x59 ./generate/hwinit.o
+                                0x109 (size before relaxing)
+ .debug_str     0x0000335c     0x115f ./generate/inthandler.o
+                               0x1214 (size before relaxing)
+ .debug_str     0x000044bb       0x37 ./generate/vects.o
+                                 0xe5 (size before relaxing)
+
+.comment        0x00000000       0x2d
+ .comment       0x00000000       0x2d ./src/Powerboard.o
+                                 0x2e (size before relaxing)
+ .comment       0x00000000       0x2e ./src/board.o
+ .comment       0x00000000       0x2e ./generate/hwinit.o
+ .comment       0x00000000       0x2e ./generate/inthandler.o
+ .comment       0x00000000       0x2e ./generate/vects.o
+
+.sdata          0x00000000        0x0
+ .sdata         0x00000000        0x0 ./generate/start.o
