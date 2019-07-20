@@ -39,9 +39,9 @@ int main(void) {
 
     while(1) {
     	delay_ms(500);
-    	GPIO_clr(C, 5);
+    	LED1_Port = 1;
     	delay_ms(500);
-    	GPIO_set(C,5);
+    	LED1_Port = 0;
 	// TODO: add application code here
     }
 return 0;

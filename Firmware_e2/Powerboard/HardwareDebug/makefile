@@ -113,7 +113,7 @@ all: Powerboard.elf secondary-outputs
 Powerboard.elf: $(OBJS) $(USER_OBJS) $(LIBRARY_GENERATOR_OUTPUTTYPE_OUTPUTS) $(LINKER_SCRIPT)
 	@echo 'Building target: $@'
 	@echo 'Invoking Linker'
-	$(file > Powerboard.elf.in,-O0 -ffunction-sections -fdata-sections -g2 -Wstack-usage=100 -mcpu=rx600 -misa=v1 -mlittle-endian-data -o "Powerboard.elf" $(OBJS) $(USER_OBJS) $(LIBS) -T "C:/projekte/Repo/Powerboard/Firmware_e2/Powerboard/generate/linker_script.ld" -L"C:\\projekte\\Repo\\Powerboard\\Firmware_e2\\Powerboard\\HardwareDebug" -Wl,-M=Powerboard.map -Wl,--start-group -lPowerboard -lgcc -lstdc++ -Wl,--end-group -nostartfiles -Wl,-e_PowerON_Reset)
+	$(file > Powerboard.elf.in,-O0 -ffunction-sections -fdata-sections -g2 -Wstack-usage=100 -mcpu=rx600 -misa=v1 -mlittle-endian-data -o "Powerboard.elf" $(OBJS) $(USER_OBJS) $(LIBS) -T "C:/projekte/Repo/PowerBoard/Firmware_e2/Powerboard/generate/linker_script.ld" -L"C:\\projekte\\Repo\\PowerBoard\\Firmware_e2\\Powerboard\\HardwareDebug" -Wl,-M=Powerboard.map -Wl,--start-group -lPowerboard -lgcc -lstdc++ -Wl,--end-group -nostartfiles -Wl,-e_PowerON_Reset)
 	rx-elf-g++ @"Powerboard.elf.in"
 	@echo 'Finished building target: $@'
 	@echo ' '

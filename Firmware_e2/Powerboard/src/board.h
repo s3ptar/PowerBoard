@@ -26,6 +26,10 @@
 #define LED2_Port	    PORT2.PODR.BIT.B4
 
 //EZ8504CZZ
+#define EZ8504_frame	PORTA.PODR.BIT.B0
+#define EZ8504_load		PORTA.PODR.BIT.B1
+#define EZ8504_cp		PORTA.PODR.BIT.B2
+#define EZ8504_data		PORTE.PODR.BYTE
 
 
 

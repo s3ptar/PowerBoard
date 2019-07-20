@@ -100,21 +100,21 @@
   61                             		.loc 1 41 0 discriminator 1
   62 0008 FB 1A F4 01             		mov.L	#0x1f4, r1
   63 000c 05 00 00 00             		bsr	_delay_ms
-  42:../src/Powerboard.c ****     	GPIO_clr(C, 5);
+  42:../src/Powerboard.c ****     	LED1_Port = 1;
   64                             		.loc 1 42 0 discriminator 1
   65 0010 FB 5E 0C C0 08          		mov.L	#0x8c00c, r5
   66 0015 CD 54 20                		mov.B	32[r5], r4
-  67 0018 75 24 DF                		and	#-33, r4
+  67 0018 75 34 20                		or	#32, r4
   68 001b C7 54 20                		mov.B	r4, 32[r5]
   43:../src/Powerboard.c ****     	delay_ms(500);
   69                             		.loc 1 43 0 discriminator 1
   70 001e FB 1A F4 01             		mov.L	#0x1f4, r1
   71 0022 05 00 00 00             		bsr	_delay_ms
-  44:../src/Powerboard.c ****     	GPIO_set(C,5);
+  44:../src/Powerboard.c ****     	LED1_Port = 0;
   72                             		.loc 1 44 0 discriminator 1
   73 0026 FB 5E 0C C0 08          		mov.L	#0x8c00c, r5
   74 002b CD 54 20                		mov.B	32[r5], r4
-  75 002e 75 34 20                		or	#32, r4
+  75 002e 75 24 DF                		and	#-33, r4
   76 0031 C7 54 20                		mov.B	r4, 32[r5]
   45:../src/Powerboard.c **** 	// TODO: add application code here
   46:../src/Powerboard.c ****     }
@@ -126,4 +126,4 @@
   85                             	_initialized.13935:
   86 0000 00 00 00 00             		.zero	4
  146                             	.Letext0:
- 147                             		.file 2 "C:/projekte/Repo/Powerboard/Firmware_e2/Powerboard/generate/iodefine.h"
+ 147                             		.file 2 "C:/projekte/Repo/PowerBoard/Firmware_e2/Powerboard/generate/iodefine.h"

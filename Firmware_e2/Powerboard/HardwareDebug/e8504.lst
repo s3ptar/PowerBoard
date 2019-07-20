@@ -1,0 +1,183 @@
+   1                             		.file	"e8504.c"
+   2                             		.section P,"ax"
+   3                             	.Ltext0:
+   4                             		.comm	_framebuffer_display_1,9600,1
+   5                             		.section	.text.delay_nop,"ax",@progbits
+   6                             		.global	_delay_nop
+   8                             	_delay_nop:
+   9                             	.LFB0:
+  10                             		.file 1 "../src/e8504.c"
+   1:../src/e8504.c **** /***********************************************************************
+   2:../src/e8504.c **** *! \file:                   ez8504.c
+   3:../src/e8504.c **** *  \projekt:                powerboard
+   4:../src/e8504.c **** *  \created on:             07.03.2019
+   5:../src/e8504.c **** *  \author:                 R. Gräber
+   6:../src/e8504.c **** *  \version:                0
+   7:../src/e8504.c **** *  \history:                -
+   8:../src/e8504.c **** *  \brief
+   9:../src/e8504.c **** ***********************************************************************/
+  10:../src/e8504.c **** 
+  11:../src/e8504.c **** /***********************************************************************
+  12:../src/e8504.c **** * Includes
+  13:../src/e8504.c **** ***********************************************************************/
+  14:../src/e8504.c **** #include "e8504.h"
+  15:../src/e8504.c **** /***********************************************************************
+  16:../src/e8504.c **** * Informations
+  17:../src/e8504.c **** ***********************************************************************/
+  18:../src/e8504.c **** 
+  19:../src/e8504.c **** /***********************************************************************
+  20:../src/e8504.c **** * Definitions
+  21:../src/e8504.c **** ***********************************************************************/
+  22:../src/e8504.c **** 
+  23:../src/e8504.c **** #define X_dots 320
+  24:../src/e8504.c **** #define Y_dots 240
+  25:../src/e8504.c **** #define framebuffer_size (X_dots/8)*Y_dots
+  26:../src/e8504.c **** #define delay_loops 1
+  27:../src/e8504.c **** 
+  28:../src/e8504.c **** /***********************************************************************
+  29:../src/e8504.c **** * Constant
+  30:../src/e8504.c **** ***********************************************************************/
+  31:../src/e8504.c **** 
+  32:../src/e8504.c **** /***********************************************************************
+  33:../src/e8504.c **** * Global Variable
+  34:../src/e8504.c **** ***********************************************************************/
+  35:../src/e8504.c **** 
+  36:../src/e8504.c **** /***********************************************************************
+  37:../src/e8504.c **** * Local Variable
+  38:../src/e8504.c **** ***********************************************************************/
+  39:../src/e8504.c **** 
+  40:../src/e8504.c **** uint8_t framebuffer_display_1[framebuffer_size];
+  41:../src/e8504.c **** 
+  42:../src/e8504.c **** /***********************************************************************
+  43:../src/e8504.c **** * Local Funtions
+  44:../src/e8504.c **** ***********************************************************************/
+  45:../src/e8504.c **** void delay_nop(uint16_t delay);
+  46:../src/e8504.c **** void delay_nop(uint16_t delay){
+  11                             		.loc 1 46 0
+  12 0000 7E A6                   		push.l	r6
+  13                             	.LCFI0:
+  14 0002 71 06 FC                		add	#-4, r0, r6
+  15                             	.LCFI1:
+  16 0005 EF 60                   		mov.L	r6, r0
+  17                             	.LCFI2:
+  18 0007 D3 61                   		mov.W	r1, [r6]
+  47:../src/e8504.c **** 	while(delay--);
+  19                             		.loc 1 47 0
+  20 0009 03                      		nop
+  21                             	.L2:
+  22                             		.loc 1 47 0 is_stmt 0 discriminator 1
+  23 000a DC 65                   		mov.W	[r6], r5
+  24 000c 71 54 FF                		add	#-1, r5, r4
+  25 000f D3 64                   		mov.W	r4, [r6]
+  26 0011 5F 55                   		movu.W	r5, r5
+  27 0013 61 05                   		cmp	#0, r5
+  28 0015 21 F5                   		bne	.L2
+  48:../src/e8504.c **** 		//asm("nop");
+  49:../src/e8504.c **** }
+  29                             		.loc 1 49 0 is_stmt 1
+  30 0017 3F 66 02                		rtsd	#8, r6-r6
+  31                             	.LFE0:
+  33                             		.section	.text.update_display,"ax",@progbits
+  34                             		.global	_update_display
+  36                             	_update_display:
+  37                             	.LFB1:
+  50:../src/e8504.c **** 
+  51:../src/e8504.c **** /***********************************************************************
+  52:../src/e8504.c **** *! \fn			int16_t create_fb(char *dataPtr, byte *fb)
+  53:../src/e8504.c **** *  \brief		reset the Framebuffer
+  54:../src/e8504.c **** *  \param		dataPtr String to scroll across
+  55:../src/e8504.c **** *  \param		fb Pointer to the frame buffer array
+  56:../src/e8504.c **** *  \exception	none
+  57:../src/e8504.c **** *  \return		length of frame buffer
+  58:../src/e8504.c **** ***********************************************************************/
+  59:../src/e8504.c **** void update_display(){
+  38                             		.loc 1 59 0
+  39 0000 7E A6                   		push.l	r6
+  40                             	.LCFI3:
+  41 0002 71 06 FC                		add	#-4, r0, r6
+  42                             	.LCFI4:
+  43 0005 EF 60                   		mov.L	r6, r0
+  44                             	.LCFI5:
+  60:../src/e8504.c **** 
+  61:../src/e8504.c **** 	//calculate the loop for an full cycle update
+  62:../src/e8504.c **** 	uint16_t cycle_for_full_update;
+  63:../src/e8504.c **** 	//calculate the loop for an full cycle update
+  64:../src/e8504.c **** 	//start frame
+  65:../src/e8504.c **** 	EZ8504_frame = 0;
+  45                             		.loc 1 65 0
+  46 0007 FB 5E 0A C0 08          		mov.L	#0x8c00a, r5
+  47 000c CD 54 20                		mov.B	32[r5], r4
+  48 000f 75 24 FE                		and	#-2, r4
+  49 0012 C7 54 20                		mov.B	r4, 32[r5]
+  66:../src/e8504.c **** 	EZ8504_load = 0;
+  50                             		.loc 1 66 0
+  51 0015 FB 5E 0A C0 08          		mov.L	#0x8c00a, r5
+  52 001a CD 54 20                		mov.B	32[r5], r4
+  53 001d 75 24 FD                		and	#-3, r4
+  54 0020 C7 54 20                		mov.B	r4, 32[r5]
+  67:../src/e8504.c **** 	EZ8504_cp = 0;
+  55                             		.loc 1 67 0
+  56 0023 FB 5E 0A C0 08          		mov.L	#0x8c00a, r5
+  57 0028 CD 54 20                		mov.B	32[r5], r4
+  58 002b 75 24 FB                		and	#-5, r4
+  59 002e C7 54 20                		mov.B	r4, 32[r5]
+  68:../src/e8504.c **** 	delay_nop(delay_loops);
+  60                             		.loc 1 68 0
+  61 0031 66 11                   		mov	#1, r1
+  62 0033 05 00 00 00             		bsr	_delay_nop
+  69:../src/e8504.c **** 	EZ8504_frame = 1;
+  63                             		.loc 1 69 0
+  64 0037 FB 5E 0A C0 08          		mov.L	#0x8c00a, r5
+  65 003c CD 54 20                		mov.B	32[r5], r4
+  66 003f 65 14                   		or	#1, r4
+  67 0041 C7 54 20                		mov.B	r4, 32[r5]
+  70:../src/e8504.c **** 	delay_nop(delay_loops);
+  68                             		.loc 1 70 0
+  69 0044 66 11                   		mov	#1, r1
+  70 0046 05 00 00 00             		bsr	_delay_nop
+  71:../src/e8504.c **** 	EZ8504_load = 1;
+  71                             		.loc 1 71 0
+  72 004a FB 5E 0A C0 08          		mov.L	#0x8c00a, r5
+  73 004f CD 54 20                		mov.B	32[r5], r4
+  74 0052 65 24                   		or	#2, r4
+  75 0054 C7 54 20                		mov.B	r4, 32[r5]
+  72:../src/e8504.c **** 	delay_nop(delay_loops);
+  76                             		.loc 1 72 0
+  77 0057 66 11                   		mov	#1, r1
+  78 0059 05 00 00 00             		bsr	_delay_nop
+  73:../src/e8504.c **** 	EZ8504_load = 0;
+  79                             		.loc 1 73 0
+  80 005d FB 5E 0A C0 08          		mov.L	#0x8c00a, r5
+  81 0062 CD 54 20                		mov.B	32[r5], r4
+  82 0065 75 24 FD                		and	#-3, r4
+  83 0068 C7 54 20                		mov.B	r4, 32[r5]
+  74:../src/e8504.c **** 
+  75:../src/e8504.c **** 
+  76:../src/e8504.c **** 	for (cycle_for_full_update = 0; cycle_for_full_update < cycle_for_full_update; cycle_for_full_upda
+  84                             		.loc 1 76 0
+  85 006b F8 65 00                		mov.W	#0, [r6]
+  86 006e 03                      		nop
+  77:../src/e8504.c **** 
+  78:../src/e8504.c **** 		//first half byte
+  79:../src/e8504.c **** 		EZ8504_cp = 1;
+  80:../src/e8504.c **** 		delay_nop(delay_loops);
+  81:../src/e8504.c **** 		EZ8504_data = framebuffer_display_1[cycle_for_full_update]&0x0F;
+  82:../src/e8504.c **** 		delay_nop(delay_loops);
+  83:../src/e8504.c **** 		EZ8504_cp = 0;
+  84:../src/e8504.c **** 		delay_nop(delay_loops);
+  85:../src/e8504.c **** 		EZ8504_frame = 0;
+  86:../src/e8504.c **** 		EZ8504_cp = 1;
+  87:../src/e8504.c **** 		delay_nop(delay_loops);
+  88:../src/e8504.c **** 		//second half byte
+  89:../src/e8504.c **** 		EZ8504_data = (framebuffer_display_1[cycle_for_full_update]>>4)&0x0F;
+  90:../src/e8504.c **** 		delay_nop(delay_loops);
+  91:../src/e8504.c **** 		EZ8504_cp = 0;
+  92:../src/e8504.c **** 	}
+  93:../src/e8504.c **** 
+  94:../src/e8504.c **** }
+  87                             		.loc 1 94 0
+  88 006f 3F 66 02                		rtsd	#8, r6-r6
+  89                             	.LFE1:
+ 155                             	.Letext0:
+ 156                             		.file 2 "C:\\Program Files (x86)\\GCC for Renesas RX 4.8.4.201803-GNURX-ELF\\rx-elf\\rx-elf\\/rx-e
+ 157                             		.file 3 "C:/projekte/Repo/PowerBoard/Firmware_e2/Powerboard/generate/iodefine.h"

@@ -33,7 +33,7 @@ S_UPPER_DEPS += \
 generate/%.o: ../generate/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking Compiler'
-	$(file > $@.in,-O0 -ffunction-sections -fdata-sections -g2 -Wstack-usage=100 -mcpu=rx600 -misa=v1 -mlittle-endian-data -nostdinc -I"C:/projekte/Repo/Powerboard/Firmware_e2/Powerboard/generate" -I"C:\\Program Files (x86)\\GCC for Renesas RX 4.8.4.201803-GNURX-ELF\\rx-elf\\rx-elf\\/rx-elf/optlibinc" -DCPPAPP -Wa,-adlnh="$(basename $(notdir $<)).lst" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c "$<" -o "$@")
+	$(file > $@.in,-O0 -ffunction-sections -fdata-sections -g2 -Wstack-usage=100 -mcpu=rx600 -misa=v1 -mlittle-endian-data -nostdinc -I"C:/projekte/Repo/PowerBoard/Firmware_e2/Powerboard/generate" -I"C:\\Program Files (x86)\\GCC for Renesas RX 4.8.4.201803-GNURX-ELF\\rx-elf\\rx-elf\\/rx-elf/optlibinc" -DCPPAPP -Wa,-adlnh="$(basename $(notdir $<)).lst" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c "$<" -o "$@")
 	rx-elf-gcc @"$@.in"
 	@echo 'Finished building: $<'
 	@echo ' '
@@ -41,7 +41,7 @@ generate/%.o: ../generate/%.c
 generate/%.o: ../generate/%.S
 	@echo 'Building file: $<'
 	@echo 'Invoking Assembler'
-	$(file > $@.in,-O0 -ffunction-sections -fdata-sections -g2 -Wstack-usage=100 -mcpu=rx600 -misa=v1 -mlittle-endian-data -x assembler-with-cpp -Wa,--gdwarf2 -DCPPAPP -I"C:/projekte/Repo/Powerboard/Firmware_e2/Powerboard/src" -Wa,-adlhn="$(basename $(notdir $<)).lst" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c "$<" -o "$@")
+	$(file > $@.in,-O0 -ffunction-sections -fdata-sections -g2 -Wstack-usage=100 -mcpu=rx600 -misa=v1 -mlittle-endian-data -x assembler-with-cpp -Wa,--gdwarf2 -DCPPAPP -I"C:/projekte/Repo/PowerBoard/Firmware_e2/Powerboard/src" -Wa,-adlhn="$(basename $(notdir $<)).lst" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c "$<" -o "$@")
 	rx-elf-gcc @"$@.in"
 	@echo 'Finished building: $<'
 	@echo ' '

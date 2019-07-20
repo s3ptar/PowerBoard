@@ -133,11 +133,8 @@ void init_board( void ){
 
 	init_clock();
 	Timer_MTU3_init();		// Timer fpr SysTick
-	//LED1_DDR = 1;
-	//LED1_Port = 1;
-
-	GPIO_output(C,5);
-	GPIO_set(C,5);
+	LED1_DDR = 1;
+	LED1_Port = 1;
 	LED1_Port = 1;
 	LED2_DDR = 1;
 	LED2_Port = 1;
