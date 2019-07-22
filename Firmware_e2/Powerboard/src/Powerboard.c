@@ -11,6 +11,7 @@
 #include <iodefine.h>
 #include "board.h"
 #include "gpio.h"
+#include "e8504.h"
 
 #ifdef CPPAPP
 //Initialize global constructors
@@ -35,7 +36,7 @@ extern void __main()
 int main(void) {
 
 	init_board();
-
+	e8504_testpattern();
 
     while(1) {
     	delay_ms(500);

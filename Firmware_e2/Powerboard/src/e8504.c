@@ -48,6 +48,14 @@ void delay_nop(uint16_t delay){
 		//asm("nop");
 }
 
+void e8504_testpattern(void){
+	uint16_t loop_index;
+	for(loop_index = 0; loop_index > 80; loop_index++)
+		framebuffer_display_1[loop_index] = 0xFF;
+	for(loop_index = 200; loop_index > 240; loop_index++)
+		framebuffer_display_1[loop_index] = 0xFF;
+}
+
 /***********************************************************************
 *! \fn			int16_t create_fb(char *dataPtr, byte *fb)
 *  \brief		reset the Framebuffer
@@ -56,12 +64,14 @@ void delay_nop(uint16_t delay){
 *  \exception	none
 *  \return		length of frame buffer
 ***********************************************************************/
-void update_display(){
+void update_display(void){
 
 	//calculate the loop for an full cycle update
 	uint16_t cycle_for_full_update;
 	//calculate the loop for an full cycle update
 	//start frame
+
+
 	EZ8504_frame = 0;
 	EZ8504_load = 0;
 	EZ8504_cp = 0;

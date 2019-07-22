@@ -33,6 +33,7 @@ unsigned long int ms_counter,ms_counter2, delay_counter;
 /************************************************************************
  * Local Funtions
  ***********************************************************************/
+void init_IO(void);
 
 /************************************************************************
 *! \fn			init_clock( void )
@@ -133,11 +134,7 @@ void init_board( void ){
 
 	init_clock();
 	Timer_MTU3_init();		// Timer fpr SysTick
-	LED1_DDR = 1;
-	LED1_Port = 1;
-	LED1_Port = 1;
-	LED2_DDR = 1;
-	LED2_Port = 1;
+	init_IO();
 
 }
 
@@ -188,6 +185,15 @@ void init_IO(void){
 
 	PORT2.PDR.BIT.B2=1;		// Freigaben für PD und SS
 	PORT3.PDR.BIT.B3=1;
+	LED1_DDR = 1;
+	LED1_Port = 1;
+	LED1_Port = 1;
+	LED2_DDR = 1;
+	LED2_Port = 1;
+	PORTA.PDR.BIT.B0 = 1;
+	PORTA.PDR.BIT.B1 = 1;
+	PORTA.PDR.BIT.B2 = 1;
+	PORTE.PDR.BYTE = 0xFF;
 }
 
 
