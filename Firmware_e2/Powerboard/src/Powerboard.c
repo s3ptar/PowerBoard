@@ -39,10 +39,11 @@ int main(void) {
 	e8504_testpattern();
 
     while(1) {
-    	delay_ms(500);
+    	delay_ms(100);
     	LED1_Port = 1;
-    	delay_ms(500);
+    	delay_ms(100);
     	LED1_Port = 0;
+    	update_display();
 	// TODO: add application code here
     }
 return 0;

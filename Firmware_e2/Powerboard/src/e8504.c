@@ -22,7 +22,8 @@
 
 #define X_dots 320
 #define Y_dots 240
-#define framebuffer_size (X_dots/8)*Y_dots
+#define display_row (X_dots/8)
+#define display_colum (Y_dots)
 #define delay_loops 1
 
 /***********************************************************************
@@ -37,7 +38,7 @@
 * Local Variable
 ***********************************************************************/
 
-uint8_t framebuffer_display_1[framebuffer_size];
+uint8_t framebuffer_display_1[display_colum][display_row];
 
 /***********************************************************************
 * Local Funtions
@@ -49,11 +50,11 @@ void delay_nop(uint16_t delay){
 }
 
 void e8504_testpattern(void){
-	uint16_t loop_index;
+	/*uint16_t loop_index;
 	for(loop_index = 0; loop_index > 80; loop_index++)
 		framebuffer_display_1[loop_index] = 0xFF;
 	for(loop_index = 200; loop_index > 240; loop_index++)
-		framebuffer_display_1[loop_index] = 0xFF;
+		framebuffer_display_1[loop_index] = 0xFF;*/
 }
 
 /***********************************************************************
@@ -67,7 +68,7 @@ void e8504_testpattern(void){
 void update_display(void){
 
 	//calculate the loop for an full cycle update
-	uint16_t cycle_for_full_update;
+	uint16_t row_count, colum_count;
 	//calculate the loop for an full cycle update
 	//start frame
 
@@ -75,30 +76,38 @@ void update_display(void){
 	EZ8504_frame = 0;
 	EZ8504_load = 0;
 	EZ8504_cp = 0;
+	//***************************
 	delay_nop(delay_loops);
 	EZ8504_frame = 1;
 	delay_nop(delay_loops);
-	EZ8504_load = 1;
-	delay_nop(delay_loops);
 	EZ8504_load = 0;
 
+    //print out colum
+	for (colum_count = 0; colum_count < display_colum; colum_count++){
 
-	for (cycle_for_full_update = 0; cycle_for_full_update < cycle_for_full_update; cycle_for_full_update++){
+        //print row
+        for(colum_row = 0; colum_row < display_row; colum_row++){
 
-		//first half byte
-		EZ8504_cp = 1;
-		delay_nop(delay_loops);
-		EZ8504_data = framebuffer_display_1[cycle_for_full_update]&0x0F;
-		delay_nop(delay_loops);
-		EZ8504_cp = 0;
-		delay_nop(delay_loops);
-		EZ8504_frame = 0;
-		EZ8504_cp = 1;
-		delay_nop(delay_loops);
-		//second half byte
-		EZ8504_data = (framebuffer_display_1[cycle_for_full_update]>>4)&0x0F;
-		delay_nop(delay_loops);
-		EZ8504_cp = 0;
+           //first half byte
+		  EZ8504_cp = 1;
+		  delay_nop(delay_loops); 
+		  EZ8504_data = framebuffer_display_1[colum_count][colum_row]&0x0F;
+		  delay_nop(delay_loops);
+		  EZ8504_cp = 0;
+		  delay_nop(delay_loops);
+		  EZ8504_frame = 0;
+		  //second half byte
+		  EZ8504_cp = 1;
+		  delay_nop(delay_loops);
+		  EZ8504_data = (framebuffer_display_1[colum_count][colum_row]>>4)&0x0F;
+		  delay_nop(delay_loops);
+		  EZ8504_cp = 0;
+            
+        }
+        
+        //set Frame end
+        EZ8504_load = 1;
+	    delay_nop(delay_loops);
 	}
 
 }
